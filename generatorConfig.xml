@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+
+    <context id="MysqlTables" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!--1.配置数据库信息-->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/MyShop"
+                        userId="root"
+                        password="root">
+        </jdbcConnection>
+
+        <javaTypeResolver >
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+        <!--2.配置你生成的pojo的存放位置，targetPackage包名称，targetProject：配置绝对路径一直到“java”目录就可以了-->
+        <javaModelGenerator targetPackage="com.myshop.pojo" targetProject="D:\IDEAproject\TestMybatisGennerator\src\main\java">
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+        <!--3.配置你的mapper接口存放位置，targetPackage包名称，targetProject：配置绝对路径一直到“java”目录就可以了-->
+        <sqlMapGenerator targetPackage="com.myshop.mapper"  targetProject="D:\IDEAproject\TestMybatisGennerator\src\main\java">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+        <!--4.配置你的mapper接口对应的xml文件存放位置，targetPackage包名称，targetProject：配置绝对路径一直到“java”目录就可以了-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.myshop.mapper"  targetProject="D:\IDEAproject\TestMybatisGennerator\src\main\java">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+        <!--5.tableName：配置你要生成的表     domainObjectName：以及生成的pojo类的名称
+         useActualColumnNames：使用实际列名称，true：使用数据库的列名称  false：去掉下划线生成对应驼峰命名法的名字  -->
+        <table tableName="category" domainObjectName="Category" >
+            <property name="useActualColumnNames" value="true"/>
+            <generatedKey column="id" sqlStatement="mysql" identity="true" />
+        </table>
+
+        <table tableName="goods" domainObjectName="Goods" >
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="mysql" identity="true" />
+        </table>
+    </context>
+</generatorConfiguration>
